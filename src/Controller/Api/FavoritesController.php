@@ -19,7 +19,6 @@ use BaserCore\Utility\BcUtil;
 use BcFavorite\Service\FavoritesServiceInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\ORM\Exception\PersistenceFailedException;
-use Exception;
 
 /**
  * Class FavoritesController
@@ -109,7 +108,7 @@ class FavoritesController extends BcApiController
      */
     public function edit(FavoritesServiceInterface $service, $id)
     {
-        $this->request->allowMethod(['post', 'put']);
+        $this->request->allowMethod(['post', 'put', 'patch']);
         $favorite = $errors = null;
         try {
             $favorite = $service->update($service->get($id), $this->request->getData());
