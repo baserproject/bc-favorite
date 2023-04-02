@@ -9,9 +9,8 @@
  * @license       http://basercms.net/license/index.html MIT License
  */
 
-namespace BcFavorite\Test\TestCase\Controller\Api;
+namespace BcFavorite\Test\TestCase\Controller\Api\Admin;
 
-use Cake\Core\Configure;
 use Cake\TestSuite\IntegrationTestTrait;
 
 class FavoritesControllerTest extends \BaserCore\TestSuite\BcTestCase
@@ -76,7 +75,7 @@ class FavoritesControllerTest extends \BaserCore\TestSuite\BcTestCase
      */
     public function testView(): void
     {
-        $this->get('/baser/api/bc-favorite/favorites/view/2.json?token=' . $this->accessToken);
+        $this->get('/baser/api/admin/bc-favorite/favorites/view/2.json?token=' . $this->accessToken);
         $this->assertResponseOk();
         $result = json_decode((string)$this->_response->getBody());
         $this->assertEquals('新着情報管理', $result->favorite->name);
@@ -89,7 +88,7 @@ class FavoritesControllerTest extends \BaserCore\TestSuite\BcTestCase
      */
     public function testIndex()
     {
-        $this->get('/baser/api/bc-favorite/favorites/index.json?token=' . $this->accessToken);
+        $this->get('/baser/api/admin/bc-favorite/favorites/index.json?token=' . $this->accessToken);
         $this->assertResponseOk();
         $result = json_decode((string)$this->_response->getBody());
         $this->assertEquals('固定ページ管理', $result->favorites[0]->name);
@@ -109,7 +108,7 @@ class FavoritesControllerTest extends \BaserCore\TestSuite\BcTestCase
             'user_id' => '1',
             'url' => '/baser/admin/contents/index',
         ];
-        $this->post('/baser/api/bc-favorite/favorites/add.json?token=' . $this->accessToken, $data);
+        $this->post('/baser/api/admin/bc-favorite/favorites/add.json?token=' . $this->accessToken, $data);
         $this->assertResponseOk();
         $favorites = $this->getTableLocator()->get('BcFavorite.Favorites');
         $query = $favorites->find()->where(['name' => $data['name']]);
@@ -128,7 +127,7 @@ class FavoritesControllerTest extends \BaserCore\TestSuite\BcTestCase
             'user_id' => '1',
             'url' => '/baser/admin/contents/index',
         ];
-        $this->post('/baser/api/bc-favorite/favorites/add.json?token=' . $this->accessToken, $data);
+        $this->post('/baser/api/admin/bc-favorite/favorites/add.json?token=' . $this->accessToken, $data);
         $this->assertResponseError();
         $result = json_decode((string)$this->_response->getBody());
         $this->assertEquals("タイトルは必須です。", $result->errors->name->_empty);
@@ -146,7 +145,7 @@ class FavoritesControllerTest extends \BaserCore\TestSuite\BcTestCase
         $data = [
             'name' => 'Test_test_Man'
         ];
-        $this->post('/baser/api/bc-favorite/favorites/edit/1.json?token=' . $this->accessToken, $data);
+        $this->post('/baser/api/admin/bc-favorite/favorites/edit/1.json?token=' . $this->accessToken, $data);
         $this->assertResponseSuccess();
         $favorites = $this->getTableLocator()->get('BcFavorite.Favorites');
         $query = $favorites->find()->where(['name' => $data['name']]);
@@ -162,7 +161,7 @@ class FavoritesControllerTest extends \BaserCore\TestSuite\BcTestCase
     {
         $this->enableSecurityToken();
         $this->enableCsrfToken();
-        $this->post('/baser/api/bc-favorite/favorites/delete/2.json?token=' . $this->accessToken);
+        $this->post('/baser/api/admin/bc-favorite/favorites/delete/2.json?token=' . $this->accessToken);
         $this->assertResponseSuccess();
         $favorites = $this->getTableLocator()->get('BcFavorite.Favorites');
         $query = $favorites->find()->where(['id' => 2]);
@@ -176,13 +175,13 @@ class FavoritesControllerTest extends \BaserCore\TestSuite\BcTestCase
      */
     public function testSave_favorite_box()
     {
-        $this->post('/baser/api/bc-favorite/favorites/save_favorite_box.json?token=' . $this->accessToken);
+        $this->post('/baser/api/admin/bc-favorite/favorites/save_favorite_box.json?token=' . $this->accessToken);
         $this->assertResponseOk();
         $this->assertEquals('', $_SESSION['Baser']['favorite_box_opened']);
-        $this->post('/baser/api/bc-favorite/favorites/save_favorite_box/1.json?token=' . $this->accessToken);
+        $this->post('/baser/api/admin/bc-favorite/favorites/save_favorite_box/1.json?token=' . $this->accessToken);
         $this->assertResponseOk();
         $this->assertEquals('1', $_SESSION['Baser']['favorite_box_opened']);
-        $this->post('/baser/api/bc-favorite/favorites/save_favorite_box/xxxxxxxxxxxxxxxxx.json?token=' . $this->accessToken);
+        $this->post('/baser/api/admin/bc-favorite/favorites/save_favorite_box/xxxxxxxxxxxxxxxxx.json?token=' . $this->accessToken);
         $this->assertResponseError();
     }
     /**
@@ -222,7 +221,7 @@ class FavoritesControllerTest extends \BaserCore\TestSuite\BcTestCase
      */
     public function testAdmin_update_sort()
     {
-        $this->post('/baser/api/bc-favorite/favorites/change_sort.json?token=' . $this->accessToken, [
+        $this->post('/baser/api/admin/bc-favorite/favorites/change_sort.json?token=' . $this->accessToken, [
             'id' => 1,
             'offset' => 1
         ]);

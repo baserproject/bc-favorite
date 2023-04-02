@@ -9,21 +9,21 @@
  * @license       http://basercms.net/license/index.html MIT License
  */
 
-namespace BcFavorite\Controller\Api;
+namespace BcFavorite\Controller\Api\Admin;
 
-use BaserCore\Annotation\NoTodo;
-use BaserCore\Annotation\Checked;
-use BaserCore\Annotation\UnitTest;
-use BaserCore\Controller\Api\BcApiController;
+use BaserCore\Controller\Api\Admin\BcAdminApiController;
 use BaserCore\Utility\BcUtil;
 use BcFavorite\Service\FavoritesServiceInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\ORM\Exception\PersistenceFailedException;
+use BaserCore\Annotation\UnitTest;
+use BaserCore\Annotation\NoTodo;
+use BaserCore\Annotation\Checked;
 
 /**
  * Class FavoritesController
  */
-class FavoritesController extends BcApiController
+class FavoritesController extends BcAdminApiController
 {
 
     /**
