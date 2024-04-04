@@ -11,11 +11,9 @@
 
 namespace BcFavorite\Service;
 
-use BcFavorite\Model\Table\FavoritesTable;
 use Cake\Datasource\EntityInterface;
 use Cake\ORM\Exception\PersistenceFailedException;
 use Cake\ORM\Query;
-use Cake\ORM\Table;
 use Cake\ORM\TableRegistry;
 use BaserCore\Annotation\UnitTest;
 use BaserCore\Annotation\NoTodo;
@@ -29,9 +27,9 @@ class FavoritesService implements FavoritesServiceInterface
 
     /**
      * Favorites Table
-     * @var FavoritesTable|\Cake\ORM\Table
+     * @var \Cake\ORM\Table
      */
-    public FavoritesTable|Table $Favorites;
+    public $Favorites;
 
     /**
      * FavoritesService constructor.
