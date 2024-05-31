@@ -22,7 +22,7 @@ use BaserCore\Annotation\Checked;
 /**
  * plugin for BcFavorite
  */
-class BcFavoritePlugin extends BcPlugin
+class Plugin extends BcPlugin
 {
     /**
      * services
