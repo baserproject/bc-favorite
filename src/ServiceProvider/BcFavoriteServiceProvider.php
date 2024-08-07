@@ -28,7 +28,7 @@ class BcFavoriteServiceProvider extends ServiceProvider
      * Provides
      * @var string[]
      */
-    protected array $provides = [
+    protected $provides = [
         FavoritesServiceInterface::class,
     ];
 
@@ -37,7 +37,6 @@ class BcFavoriteServiceProvider extends ServiceProvider
      * @param \Cake\Core\ContainerInterface $container
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function services($container): void
     {
