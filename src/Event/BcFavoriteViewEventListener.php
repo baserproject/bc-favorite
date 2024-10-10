@@ -17,6 +17,7 @@ use BaserCore\Annotation\NoTodo;
 use BaserCore\Annotation\Checked;
 use BaserCore\Annotation\UnitTest;
 use BaserCore\Annotation\Note;
+use Cake\Routing\Route\Route;
 use Cake\Routing\Router;
 
 /**
@@ -33,9 +34,6 @@ class BcFavoriteViewEventListener extends \BaserCore\Event\BcViewEventListener
 
     /**
      * 管理画面メニュー上部
-     * @param EventInterface $event
-     * @checked
-     * @noTodo
      */
     public function beforeAdminMenu(EventInterface $event)
     {
@@ -52,8 +50,6 @@ class BcFavoriteViewEventListener extends \BaserCore\Event\BcViewEventListener
      *
      * @param  EventInterface $event
      * @return void
-     * @checked
-     * @noTodo
      */
     public function beforeContentsMenu(EventInterface $event)
     {
@@ -75,7 +71,6 @@ class BcFavoriteViewEventListener extends \BaserCore\Event\BcViewEventListener
      *
      * @param EventInterface $event
      * @note(value="できたら、favorite_menuに移動する")
-     * @checked
      */
     public function afterRender(EventInterface $event)
     {

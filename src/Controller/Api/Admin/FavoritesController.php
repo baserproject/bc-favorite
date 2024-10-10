@@ -170,8 +170,6 @@ class FavoritesController extends BcAdminApiController
      * [ADMIN] 並び替えを更新する
      *
      * @return void
-     * @checked
-     * @noTodo
      */
     public function change_sort(FavoritesServiceInterface $service)
     {
@@ -201,8 +199,6 @@ class FavoritesController extends BcAdminApiController
      * よく使う項目の表示状態を保存する
      *
      * @param mixed $open 1 Or ''
-     * @checked
-     * @noTodo
      */
     public function save_favorite_box($open = '')
     {
@@ -226,9 +222,7 @@ class FavoritesController extends BcAdminApiController
     /**
      * よく使う項目の表示状態を取得する
      *
-     * @return void
-     * @checked
-     * @noTodo
+     * @return  1 Or ''
      */
     public function get_favorite_box_opened()
     {
@@ -248,5 +242,4 @@ class FavoritesController extends BcAdminApiController
         ]);
         $this->viewBuilder()->setOption('serialize', ['result', 'message']);
     }
-
 }
