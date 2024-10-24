@@ -75,7 +75,6 @@ class FavoritesController extends BcAdminApiController
      * @param FavoritesServiceInterface $service
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function add(FavoritesServiceInterface $service)
     {
@@ -107,7 +106,6 @@ class FavoritesController extends BcAdminApiController
      * @param $id
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function edit(FavoritesServiceInterface $service, $id)
     {
@@ -142,7 +140,6 @@ class FavoritesController extends BcAdminApiController
      * @param int $id
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function delete(FavoritesServiceInterface $service, $id)
     {
@@ -175,7 +172,6 @@ class FavoritesController extends BcAdminApiController
      * @return void
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function change_sort(FavoritesServiceInterface $service)
     {
@@ -207,7 +203,6 @@ class FavoritesController extends BcAdminApiController
      * @param mixed $open 1 Or ''
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function save_favorite_box($open = '')
     {
@@ -234,7 +229,6 @@ class FavoritesController extends BcAdminApiController
      * @return void
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function get_favorite_box_opened()
     {

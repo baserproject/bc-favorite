@@ -93,7 +93,7 @@ class FavoritesTableTest extends BcTestCase
         $this->assertSame($messages, $favorite->getErrors());
     }
 
-    public static function validationDefaultDataProvider()
+    public function validationDefaultDataProvider()
     {
         return [
             [

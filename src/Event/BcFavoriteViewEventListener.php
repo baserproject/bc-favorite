@@ -36,7 +36,6 @@ class BcFavoriteViewEventListener extends \BaserCore\Event\BcViewEventListener
      * @param EventInterface $event
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function beforeAdminMenu(EventInterface $event)
     {
@@ -55,7 +54,6 @@ class BcFavoriteViewEventListener extends \BaserCore\Event\BcViewEventListener
      * @return void
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function beforeContentsMenu(EventInterface $event)
     {
@@ -82,10 +80,9 @@ class BcFavoriteViewEventListener extends \BaserCore\Event\BcViewEventListener
     public function afterRender(EventInterface $event)
     {
         if(!BcUtil::isAdminSystem()) return;
+        $request = Router::getRequest();
+        if($request->getParam('controller') === 'PasswordRequests') return;
         $view = $event->getSubject();
-        if (!$view->helpers()->has('BcAdmin')) {
-            return;
-        }
         $view->set('currentPageName', h($view->BcAdmin->getTitle()));
         $view->set('currentPageUrl', h($view->getRequest()->getRequestTarget()));
     }
