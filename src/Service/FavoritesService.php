@@ -68,13 +68,13 @@ class FavoritesService implements FavoritesServiceInterface
      */
     public function getIndex(array $queryParams): Query
     {
-        $query = $this->Favorites->find()->where(
+        $options = [];
+        if (!empty($queryParams['num'])) {
+            $options = ['limit' => $queryParams['num']];
+        }
+        return $this->Favorites->find('all', $options)->where(
             ['Favorites.user_id' => BcUtil::loginUser()->id]
         )->orderBy(['sort']);
-        if (!empty($queryParams['num'])) {
-            $query->limit($queryParams['num']);
-        }
-        return $query;
     }
 
     /**
