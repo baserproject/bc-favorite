@@ -50,8 +50,7 @@ class FavoritesController extends BcAdminApiController
             $this->setResponse($this->response->withStatus(404));
             $message = __d('baser_core', 'データが見つかりません。');
         } catch (\Throwable $e) {
-            $message = __d('baser_core', 'データベース処理中にエラーが発生しました。') . $e->getMessage();
-            $this->setResponse($this->response->withStatus(500));
+            $message = $this->handleThrowable($e);
         }
         $this->set([
             'favorite' => $favorite,
@@ -96,8 +95,7 @@ class FavoritesController extends BcAdminApiController
             $errors = $e->getEntity()->getErrors();
             $message = __d('baser_core', '入力エラーです。内容を修正してください。');
         } catch (\Throwable $e) {
-            $this->setResponse($this->response->withStatus(500));
-            $message = __d('baser_core', 'データベース処理中にエラーが発生しました。') . $e->getMessage();
+            $message = $this->handleThrowable($e);
         }
         $this->set([
             'message' => $message,
@@ -137,8 +135,7 @@ class FavoritesController extends BcAdminApiController
             $this->setResponse($this->response->withStatus(404));
             $message = __d('baser_core', 'データが見つかりません。');
         } catch (\Throwable $e) {
-            $this->setResponse($this->response->withStatus(500));
-            $message = __d('baser_core', 'データベース処理中にエラーが発生しました。') . $e->getMessage();
+            $message = $this->handleThrowable($e);
         }
         $this->set([
             'message' => $message,
@@ -175,8 +172,7 @@ class FavoritesController extends BcAdminApiController
             $this->setResponse($this->response->withStatus(404));
             $message = __d('baser_core', 'データが見つかりません。');
         } catch (\Throwable $e) {
-            $this->setResponse($this->response->withStatus(500));
-            $message = __d('baser_core', 'データベース処理中にエラーが発生しました。') . $e->getMessage();
+            $message = $this->handleThrowable($e);
         }
         $this->set([
             'message' => $message,
@@ -201,14 +197,13 @@ class FavoritesController extends BcAdminApiController
         try {
             $user = BcUtil::loginUser();
             $result = $service->changeSort(
-                $this->request->getData('id'),
-                $this->request->getData('offset'),
+                $this->getIntegerData('id'),
+                $this->getIntegerData('offset', true, true),
                 ['Favorites.user_id' => $user->id]
             );
             if ($result) BcUtil::clearAllCache();
         } catch (\Throwable $e) {
-            $this->setResponse($this->response->withStatus(500));
-            $message = __d('baser_core', 'データベース処理中にエラーが発生しました。') . $e->getMessage();
+            $message = $this->handleThrowable($e);
         }
 
         $this->set([
@@ -236,8 +231,7 @@ class FavoritesController extends BcAdminApiController
                 $this->setResponse($this->response->withStatus(400));
             }
         } catch (\Throwable $e) {
-            $this->setResponse($this->response->withStatus(500));
-            $message = __d('baser_core', 'データベース処理中にエラーが発生しました。') . $e->getMessage();
+            $message = $this->handleThrowable($e);
         }
         $this->set([
             'message' => $message
@@ -262,8 +256,7 @@ class FavoritesController extends BcAdminApiController
                 'result' => $result
             ]);
         } catch (\Throwable $e) {
-            $message = __d('baser_core', 'データベース処理中にエラーが発生しました。') . $e->getMessage();
-            $this->setResponse($this->response->withStatus(500));
+            $message = $this->handleThrowable($e);
         }
         $this->set([
             'result' => $result,
